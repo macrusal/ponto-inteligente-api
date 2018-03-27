@@ -7,10 +7,10 @@ import br.com.hibejix.pontointeligente.api.enums.PerfilEnum;
 import br.com.hibejix.pontointeligente.api.response.Response;
 import br.com.hibejix.pontointeligente.api.services.EmpresaService;
 import br.com.hibejix.pontointeligente.api.services.FuncionarioService;
-import br.com.hibejix.pontointeligente.api.utils.PasswordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author msalvador
@@ -26,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
  * @since 25/03/2018 16:16
  */
 @RestController
-@RequestMapping("/api/cadastro-pj")
+@RequestMapping("/api/cadastrar-pj")
 @CrossOrigin(origins = "*")
 public class CadastroPJController {
 
@@ -38,7 +40,11 @@ public class CadastroPJController {
     @Autowired
     private EmpresaService empresaService;
 
+    @Autowired
+    private MessageSource messageSource;
+
     public CadastroPJController() {
+
     }
 
     /**
@@ -59,10 +65,18 @@ public class CadastroPJController {
         validarDadosExistentes(cadastroPJDTO, result);
         Empresa empresa = this.converterDTOParaEmpresa(cadastroPJDTO);
         Funcionario funcionario = this.converterDTOParaFuncionario(cadastroPJDTO, result);
-
+        List<String> list = new ArrayList<>();
         if (result.hasErrors()) {
             logger.error("Erro validando dados de cadastro PJ: {}", result.getAllErrors());
-            result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+            for (Object object : result.getAllErrors()) {
+                if (object instanceof ObjectError) {
+                    ObjectError error = (ObjectError) object;
+                    String message = messageSource.getMessage(error, null);
+                    list.add(message);
+                }
+            }
+            response.setErrors(list);
+            //result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
         }
 
@@ -82,13 +96,13 @@ public class CadastroPJController {
      */
     private void validarDadosExistentes(CadastroPJDTO cadastroPJDto, BindingResult result) {
         this.empresaService.buscarPorCnpj(cadastroPJDto.getCnpj())
-                .ifPresent(emp -> result.addError(new ObjectError("empresa", "Empresa já existente.")));
+                .ifPresent(emp -> result.addError(new ObjectError("empresa", "Empresa ja existente.")));
 
         this.funcionarioService.buscarPorCpf(cadastroPJDto.getCpf())
-                .ifPresent(func -> result.addError(new ObjectError("funcionario", "CPF já existente.")));
+                .ifPresent(func -> result.addError(new ObjectError("funcionario", "CPF ja existente.")));
 
         this.funcionarioService.buscarPorEmail(cadastroPJDto.getEmail())
-                .ifPresent(func -> result.addError(new ObjectError("funcionario", "Email já existente.")));
+                .ifPresent(func -> result.addError(new ObjectError("funcionario", "Email ja existente.")));
     }
 
     /**
@@ -120,7 +134,8 @@ public class CadastroPJController {
         funcionario.setEmail(cadastroPJDto.getEmail());
         funcionario.setCpf(cadastroPJDto.getCpf());
         funcionario.setPerfil(PerfilEnum.ROLE_ADMIN);
-        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
+//        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
+        funcionario.setSenha(cadastroPJDto.getSenha());
 
         return funcionario;
     }

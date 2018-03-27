@@ -5,7 +5,6 @@ import br.com.hibejix.pontointeligente.api.entities.Funcionario;
 import br.com.hibejix.pontointeligente.api.entities.Lancamento;
 import br.com.hibejix.pontointeligente.api.enums.PerfilEnum;
 import br.com.hibejix.pontointeligente.api.enums.TipoEnum;
-import br.com.hibejix.pontointeligente.api.utils.PasswordUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -83,7 +82,8 @@ public class LancamentoRepositoryTest {
         Funcionario funcionario = new Funcionario();
         funcionario.setNome("Fulano de Tal");
         funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
-        funcionario.setSenha(PasswordUtils.gerarBCrypt("123456"));
+//        funcionario.setSenha(PasswordUtils.gerarBCrypt("123456"));
+        funcionario.setSenha("123456");
         funcionario.setCpf("24291173474");
         funcionario.setEmail("email@email.com");
         funcionario.setEmpresa(empresa);
