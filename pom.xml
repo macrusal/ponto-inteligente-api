@@ -67,7 +67,7 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
-        <!-- Spring Security 
+        <!-- Spring Security  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -82,7 +82,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
         </dependency>
-        -->
+
         <!--  Hibernate validator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -113,6 +113,7 @@
             <version>0.7.0</version>
         </dependency>
         -->
+
     </dependencies>
 
     <build>
