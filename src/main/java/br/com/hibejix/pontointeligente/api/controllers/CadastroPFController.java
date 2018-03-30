@@ -7,6 +7,7 @@ import br.com.hibejix.pontointeligente.api.enums.PerfilEnum;
 import br.com.hibejix.pontointeligente.api.response.Response;
 import br.com.hibejix.pontointeligente.api.services.EmpresaService;
 import br.com.hibejix.pontointeligente.api.services.FuncionarioService;
+import br.com.hibejix.pontointeligente.api.utils.PasswordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,8 +123,7 @@ public class CadastroPFController {
         funcionario.setEmail(cadastroPFDTO.getEmail());
         funcionario.setCpf(cadastroPFDTO.getCpf());
         funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
-//        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPFDTO.getSenha()));
-        funcionario.setSenha(cadastroPFDTO.getSenha());
+        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPFDTO.getSenha()));
         cadastroPFDTO.getQtdHorasAlmoco()
                 .ifPresent(qtdHorasAlmoco -> funcionario.setQtdHorasAlmoco(Float.valueOf(qtdHorasAlmoco)));
         cadastroPFDTO.getQtdHorasTrabalhoDia()

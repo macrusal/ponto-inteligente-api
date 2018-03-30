@@ -4,6 +4,7 @@ import br.com.hibejix.pontointeligente.api.dtos.FuncionarioDTO;
 import br.com.hibejix.pontointeligente.api.entities.Funcionario;
 import br.com.hibejix.pontointeligente.api.response.Response;
 import br.com.hibejix.pontointeligente.api.services.FuncionarioService;
+import br.com.hibejix.pontointeligente.api.utils.PasswordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,8 +115,7 @@ public class FuncionarioController {
         funcionarioDTO.getValorHora().ifPresent(valorHora -> funcionario.setValorHora(new BigDecimal(valorHora)));
 
         if (funcionarioDTO.getSenha().isPresent()) {
-//            funcionario.setSenha(PasswordUtils.gerarBCrypt(funcionarioDTO.getSenha().get()));
-            funcionario.setSenha(funcionarioDTO.getSenha().get());
+            funcionario.setSenha(PasswordUtils.gerarBCrypt(funcionarioDTO.getSenha().get()));
         }
     }
 

@@ -7,6 +7,7 @@ import br.com.hibejix.pontointeligente.api.enums.PerfilEnum;
 import br.com.hibejix.pontointeligente.api.response.Response;
 import br.com.hibejix.pontointeligente.api.services.EmpresaService;
 import br.com.hibejix.pontointeligente.api.services.FuncionarioService;
+import br.com.hibejix.pontointeligente.api.utils.PasswordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,8 +135,7 @@ public class CadastroPJController {
         funcionario.setEmail(cadastroPJDto.getEmail());
         funcionario.setCpf(cadastroPJDto.getCpf());
         funcionario.setPerfil(PerfilEnum.ROLE_ADMIN);
-//        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
-        funcionario.setSenha(cadastroPJDto.getSenha());
+        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
 
         return funcionario;
     }
