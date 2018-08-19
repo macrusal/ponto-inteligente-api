@@ -2,7 +2,7 @@
 # Ponto Inteligente
 API do sistema de ponto inteligente com Java e Spring Boot
 
-Arquitetura da Aplicacao
+# Arquitetura da Aplicação
 Java 8
 Git
 Spring Boot(com servidor Tomcat embarcado)
@@ -15,10 +15,10 @@ DBEaver
 Swagger
 Lombok
 
-Swagger
+# Swagger
 http://localhost:8088/swagger-ui.html
 
-Docker - MySQL
+# Docker - Mysql
 1 - sudo docker pull mysql / sudo docker pull mysql:5.7 1.1 - sudo docker images
 
 2 - sudo docker run --name mysql -p 3306:3306 -v /Users/marcelo/desenvolvimento/database/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ALLOW_EMPTYPASSWORD=yes -e MYSQL_DATABASE=mysql -e MYSQL_USER=marcelo -e MYSQL_PASSWORD=marcelo -d mysql:5.7 2.2 sudo docker p
