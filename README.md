@@ -3,17 +3,17 @@
 API do sistema de ponto inteligente com Java e Spring Boot
 
 # Arquitetura da Aplicação
-Java 8
-Git
-Spring Boot(com servidor Tomcat embarcado)
-Spring Data
-Docker(MySQL)
-H2DB
-JPA/Hibernate
-Flyway
-DBEaver
-Swagger
-Lombok
+* Java 8
+* Git
+* Spring Boot(com servidor Tomcat embarcado)
+* Spring Data
+* Docker(MySQL)
+* H2DB
+* JPA/Hibernate
+* Flyway
+* DBEaver
+* Swagger
+* Lombok
 
 # Swagger
 http://localhost:8088/swagger-ui.html
@@ -35,4 +35,5 @@ c. SELECT User,authentication_string FROM mysql.user;
 d. DROP USER 'marcelo'@'%';
 e. CREATE USER 'marcelo'@'%' IDENTIFIED WITH mysql_native_password BY '';
 f. GRANT ALL PRIVILEGES ON ponto_inteligente.* TO 'marcelo'@'%' identified by '';
+
 6 - Subir a aplicacao
