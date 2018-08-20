@@ -28,6 +28,7 @@ http://localhost:8088/swagger-ui.html
 4 - Criar o banco de dados que estiver referenciado no application.properties
 
 5 - Acessar linha de comando no banco de dados executando no Container:
+
 	* a. sudo docker exec -it mysql bash -l 
 	* b. mysql --user=root --password=root 
 	* c. SELECT User,authentication_string FROM mysql.user; 
