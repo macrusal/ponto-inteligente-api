@@ -50,6 +50,7 @@ public class EmpresaController {
             list.add("Empresa nao encontrada para o CNPJ " + cnpj);
             response.setErrors(list);
             //response.getErrors().add("Empresa nao encontrada para o CNPJ " + cnpj);
+
             return ResponseEntity.badRequest().body(response);
         }
 
