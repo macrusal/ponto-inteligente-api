@@ -156,6 +156,7 @@ public class CadastroPJController {
         cadastroPJDto.setCnpj(funcionario.getEmpresa().getCnpj());
 
         return cadastroPJDto;
+
     }
 
 }
