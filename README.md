@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/macrusal/ponto-inteligente-api.svg?branch=master)](https://travis-ci.org/macrusal/ponto-inteligente-api)
 # Ponto Inteligente
-API do sistema de ponto inteligente com Java e Spring Boot
+API do sistema de controle de pontos eletrônicos
 
 # Arquitetura da Aplicação
 * Java 8
